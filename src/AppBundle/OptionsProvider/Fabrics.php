@@ -2,10 +2,10 @@
 
 namespace AppBundle\OptionsProvider;
 
-use Pimcore\Model\DataObject\Brand;
+use Pimcore\Model\DataObject\Fabric;
 use Pimcore\Model\DataObject\ClassDefinition\DynamicOptionsProvider\SelectOptionsProviderInterface;
 
-class Product implements SelectOptionsProviderInterface
+class Fabrics implements SelectOptionsProviderInterface
 {
     /**
      * @param $context array
@@ -16,9 +16,9 @@ class Product implements SelectOptionsProviderInterface
     {
         $result = array();
 
-        $brands = new Brand\Listing();
-        foreach($brands as $brand){
-            array_push($result, [ "key" =>$brand->getName(), "value"=>$brand->getName()]);
+        $fab = new Fabric\Listing();
+        foreach($fab as $fabric){
+            array_push($result, [ "key" =>$fabric->getName(), "value"=>$fabric->getName()]);
         }
         return $result;
     }

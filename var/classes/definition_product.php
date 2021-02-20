@@ -12,8 +12,8 @@ Fields Summary:
 - sku [numeric]
 - color [rgbaColor]
 - discount [numeric]
-- gender [select]
-- fabric [manyToOneRelation]
+- gender [gender]
+- fabric [select]
 - price [numeric]
 - category [manyToOneRelation]
 - brand [select]
@@ -38,7 +38,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'name' => 'product',
    'description' => '',
    'creationDate' => 0,
-   'modificationDate' => 1613310987,
+   'modificationDate' => 1613494886,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -124,7 +124,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'name' => 'name',
                  'title' => 'Name',
                  'tooltip' => '',
-                 'mandatory' => true,
+                 'mandatory' => false,
                  'noteditable' => false,
                  'index' => false,
                  'locked' => false,
@@ -222,7 +222,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'name' => 'sku',
                  'title' => 'SKU',
                  'tooltip' => '',
-                 'mandatory' => true,
+                 'mandatory' => false,
                  'noteditable' => false,
                  'index' => false,
                  'locked' => false,
@@ -253,7 +253,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'name' => 'color',
                  'title' => 'Color',
                  'tooltip' => '',
-                 'mandatory' => true,
+                 'mandatory' => false,
                  'noteditable' => false,
                  'index' => false,
                  'locked' => false,
@@ -297,25 +297,35 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'defaultValueGenerator' => '',
               )),
               6 => 
-              Pimcore\Model\DataObject\ClassDefinition\Data\Select::__set_state(array(
-                 'fieldtype' => 'select',
+              Pimcore\Model\DataObject\ClassDefinition\Data\Gender::__set_state(array(
+                 'fieldtype' => 'gender',
                  'options' => 
                 array (
                   0 => 
                   array (
-                    'key' => 'Female',
-                    'value' => 'female',
+                    'key' => 'male',
+                    'value' => 'male',
                   ),
                   1 => 
                   array (
-                    'key' => 'Male',
-                    'value' => 'male',
+                    'key' => 'female',
+                    'value' => 'female',
+                  ),
+                  2 => 
+                  array (
+                    'key' => 'other',
+                    'value' => 'other',
+                  ),
+                  3 => 
+                  array (
+                    'key' => '',
+                    'value' => 'unknown',
                   ),
                 ),
                  'width' => '',
-                 'defaultValue' => '',
-                 'optionsProviderClass' => '',
-                 'optionsProviderData' => '',
+                 'defaultValue' => NULL,
+                 'optionsProviderClass' => NULL,
+                 'optionsProviderData' => NULL,
                  'queryColumnType' => 'varchar',
                  'columnType' => 'varchar',
                  'columnLength' => 190,
@@ -324,7 +334,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'name' => 'gender',
                  'title' => 'Gender',
                  'tooltip' => '',
-                 'mandatory' => true,
+                 'mandatory' => false,
                  'noteditable' => false,
                  'index' => false,
                  'locked' => false,
@@ -338,34 +348,35 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'defaultValueGenerator' => '',
               )),
               7 => 
-              Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation::__set_state(array(
-                 'fieldtype' => 'manyToOneRelation',
-                 'width' => '',
-                 'assetUploadPath' => '',
-                 'relationType' => true,
-                 'queryColumnType' => 
-                array (
-                  'id' => 'int(11)',
-                  'type' => 'enum(\'document\',\'asset\',\'object\')',
-                ),
-                 'phpdocType' => '\\Pimcore\\Model\\Document\\Page | \\Pimcore\\Model\\Document\\Snippet | \\Pimcore\\Model\\Document | \\Pimcore\\Model\\Asset | \\Pimcore\\Model\\DataObject\\AbstractObject',
-                 'objectsAllowed' => true,
-                 'assetsAllowed' => false,
-                 'assetTypes' => 
-                array (
-                ),
-                 'documentsAllowed' => false,
-                 'documentTypes' => 
-                array (
-                ),
-                 'classes' => 
+              Pimcore\Model\DataObject\ClassDefinition\Data\Select::__set_state(array(
+                 'fieldtype' => 'select',
+                 'options' => 
                 array (
                   0 => 
                   array (
-                    'classes' => 'fabric',
+                    'key' => 'Cotton ',
+                    'value' => 'Cotton ',
+                  ),
+                  1 => 
+                  array (
+                    'key' => 'Slik',
+                    'value' => 'Slik',
+                  ),
+                  2 => 
+                  array (
+                    'key' => 'Denim',
+                    'value' => 'Denim',
                   ),
                 ),
-                 'pathFormatterClass' => '',
+                 'width' => '',
+                 'defaultValue' => '',
+                 'optionsProviderClass' => '\\AppBundle\\OptionsProvider\\Fabrics',
+                 'optionsProviderData' => '',
+                 'queryColumnType' => 'varchar',
+                 'columnType' => 'varchar',
+                 'columnLength' => 190,
+                 'phpdocType' => 'string',
+                 'dynamicOptions' => false,
                  'name' => 'fabric',
                  'title' => 'Fabric',
                  'tooltip' => '',
@@ -376,9 +387,11 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'style' => '',
                  'permissions' => NULL,
                  'datatype' => 'data',
+                 'relationType' => false,
                  'invisible' => false,
                  'visibleGridView' => false,
                  'visibleSearch' => false,
+                 'defaultValueGenerator' => '',
               )),
               8 => 
               Pimcore\Model\DataObject\ClassDefinition\Data\Numeric::__set_state(array(
@@ -398,7 +411,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'name' => 'price',
                  'title' => 'Price',
                  'tooltip' => '',
-                 'mandatory' => true,
+                 'mandatory' => false,
                  'noteditable' => false,
                  'index' => false,
                  'locked' => false,
@@ -443,7 +456,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'name' => 'category',
                  'title' => 'Category',
                  'tooltip' => '',
-                 'mandatory' => true,
+                 'mandatory' => false,
                  'noteditable' => false,
                  'index' => false,
                  'locked' => false,
@@ -466,8 +479,8 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                   ),
                   1 => 
                   array (
-                    'key' => 'Gussi',
-                    'value' => 'Gussi',
+                    'key' => 'Gucci',
+                    'value' => 'Gucci',
                   ),
                 ),
                  'width' => '',
@@ -482,7 +495,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'name' => 'brand',
                  'title' => 'Brand',
                  'tooltip' => '',
-                 'mandatory' => true,
+                 'mandatory' => false,
                  'noteditable' => false,
                  'index' => false,
                  'locked' => false,
@@ -530,7 +543,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'mandatory' => false,
                  'noteditable' => false,
                  'index' => false,
-                 'locked' => NULL,
+                 'locked' => false,
                  'style' => '',
                  'permissions' => NULL,
                  'datatype' => 'data',
@@ -577,7 +590,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'name' => 'pockets',
                  'title' => 'Pockets',
                  'tooltip' => '',
-                 'mandatory' => true,
+                 'mandatory' => false,
                  'noteditable' => false,
                  'index' => false,
                  'locked' => false,

@@ -22,3 +22,11 @@ services:
 #            - "@service_id"
 #            - "plain_value"
 #            - "%parameter%"
+    
+    EventBundle\Security\Guard\WebserviceAuthenticator:
+        public: false
+        calls:
+            - [setLogger, ['@logger']]
+        tags:
+            - {name: monolog.logger, channel: security}
+        
