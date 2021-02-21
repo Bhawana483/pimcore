@@ -12,34 +12,34 @@ $this->extend('layout.html.php');
 <h1><?= $this->input("headline", ["width" => 540]); ?></h1>
 <div class="product-info">
     <?php if($this->editmode):
-        echo $this->relation('product');
+        echo $this->relation('category');
     else: ?>
     <div id="product">
         <?php
 
-        $prod = new \Pimcore\Model\DataObject\Product\Listing();
-        foreach($prod as $product) 
+        $prod = new \Pimcore\Model\DataObject\category\Listing();
+        foreach($prod as $category) 
         {
-            $prod = $this->relation('product')->getElement();
+            $prod = $this->relation('category')->getElement();
             ?>
         
 
         <!-- /** @var \Pimcore\Model\DataObject\Product $product */ -->
         
         
-        <h2><?= $this->escape($product->getName()); ?></h2>
+        <h2><?= $this->escape($category->getName()); ?></h2>
         <div class="content">
-            <?= $this->$prod[$product->getDescription()]?>
+            <?= $this->$prod[$category->getDescription()]?>
         </div>
         <div class="content">
-            <?= $this->$prod[$product->getColor()]?>
+            <?= $this->$prod[$category->getColor()]?>
         </div>
         <div class="content">
-            <?= $product->getName(); ?>
+            <?= $category->getName(); ?>
         </div>
 <div class="content">
     <?php
-    $picture = $product->getImage();
+    $picture = $category->getImage();
     if($picture instanceof \Pimcore\Model\Asset\Image):
         /** @var \Pimcore\Model\Asset\Image $picture */
         

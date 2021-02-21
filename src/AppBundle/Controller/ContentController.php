@@ -19,5 +19,27 @@ class ContentController extends FrontendController
 
         // $this->view->product = $prod;
         // return new Response('hello pimcore!!!');
+
+        // $slug = $request->get('slug');
+        $entries = new \Pimcore\Model\DataObject\Product\Listing();
+
+        // $entries->setCondition("slug LIKE ?", [$slug]);
+        $entries->load();
+
+    
+        foreach($entries as $entry) {
+            $this->view->article =$entry;
+    }
+    }
+    public function categoryAction(Request $request)
+    {
+       
+        $entries = new \Pimcore\Model\DataObject\Category\Listing();
+
+        $entries->load();
+        foreach($entries as $entrynew) 
+        {
+            $this->view->article =$entrynew;
+        }
     }
 }
