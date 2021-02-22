@@ -17,7 +17,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'name' => 'fabric',
    'description' => '',
    'creationDate' => 0,
-   'modificationDate' => 1613458953,
+   'modificationDate' => 1613921232,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',

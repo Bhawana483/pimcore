@@ -8,6 +8,7 @@
   },
   "require": {
     "php": ">=7.2",
+    "ext-gd": "*",
     "pimcore/pimcore": "~6.8.0"
   },
   "require-dev": {
